@@ -4,6 +4,9 @@ class StudentContentManagementSystem{
         this.model = new SCMS_model();
         this.view = new SCMS_view(sgtOptions);
     }
+    initialize(){
+        this.view.initialize();
+    }
 }
 
 class SCMS_view{
@@ -21,19 +24,20 @@ class SCMS_view{
                 return false;
             }
         }
-        defaultOptions.forEach( function(option){
-            if(viewOptions[option]){
-                this.intervfaceElements[ option ] = viewOptions[ option ];
-            } else {
-                console.error(`Missing option ${option}: terminating`);
-                return false;
-            }
-        })
     }
     initialize(){ 
+        this.findDomElements();
     }
     findDomElements(){
-
+        for(let key in this.interfaceElements){
+            let element = $( this.interfaceElements[key] );
+            if(element.length){
+                this.interfaceElements[key] = element;
+            } else {
+                console.error(`Missing element ${this.interfaceElements[key]}: terminating`);
+                return false;               
+            }
+        }
     }
 }
 

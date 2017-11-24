@@ -9,5 +9,5 @@ const bindOptions = {
 const sgt = new StudentContentManagementSystem(bindOptions);
 
 $(document).ready(function () {
-
+    sgt.initialize();
 });
