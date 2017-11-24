@@ -21,6 +21,7 @@ class SCMS_view{
                 return false;
             }
         }
+        //es5.5 with forEach
         defaultOptions.forEach( function(option){
             if(viewOptions[option]){
                 this.intervfaceElements[ option ] = viewOptions[ option ];
@@ -28,6 +29,15 @@ class SCMS_view{
                 console.error(`Missing option ${option}: terminating`);
                 return false;
             }
+        });
+        //es6 with fat arrow
+        defaultOptions.forEach( option=>{
+            if(viewOptions[option]){
+                this.intervfaceElements[ option ] = viewOptions[ option ];
+            } else {
+                console.error(`Missing option ${option}: terminating`);
+                return false;
+            }           
         })
     }
     initialize(){ 
