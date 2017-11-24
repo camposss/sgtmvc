@@ -1,5 +1,5 @@
 const bindOptions = {
-    //addButton: "#addButton",
+    addButton: "#addButton",
     cancelButton: "#cancelButton",
     nameInput: "#studentName",
     courseInput: "#studentCourse",
