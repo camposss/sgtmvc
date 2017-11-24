@@ -21,9 +21,19 @@ class SCMS_view{
                 return false;
             }
         }
+        defaultOptions.forEach( function(option){
+            if(viewOptions[option]){
+                this.intervfaceElements[ option ] = viewOptions[ option ];
+            } else {
+                console.error(`Missing option ${option}: terminating`);
+                return false;
+            }
+        })
     }
-    initialize(){
-        
+    initialize(){ 
+    }
+    findDomElements(){
+
     }
 }
 
