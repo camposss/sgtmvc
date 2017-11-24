@@ -2,7 +2,11 @@
 class StudentContentManagementSystem{
     constructor(sgtOptions){
         this.model = new SCMS_model();
-        this.view = new SCMS_view(sgtOptions, this);
+        const viewCallbacks = {
+            add: this.handleAddStudent.bind(this),
+            cancel: this.handleCancelStudent.bind(this)
+        }
+        this.view = new SCMS_view(sgtOptions, viewCallbacks);
     }
     initialize(){
         this.view.initialize();
@@ -10,12 +14,16 @@ class StudentContentManagementSystem{
     handleAddStudent(name, course, grade){
         console.log(`SGT CONTROLLER GOT DATA: ${name}, ${course}, ${grade}`);
     }
+    handleCancelStudent(){
+        console.log('meh');
+    }
 }
 
 class SCMS_view{
-    constructor(viewOptions, parent){
+    constructor(viewOptions, callBacks){
         this.parent = parent;
         this.interfaceElements = {};
+        this.callBacks = callBacks;
         const defaultOptions = [
             'addButton', 'cancelButton','nameInput',
             'courseInput', 'gradeInput','studentDisplay'
@@ -58,7 +66,8 @@ class SCMS_view{
         const grade = this.interfaceElements.gradeInput.val();
         console.log(`data from click: ${name}, ${course}, ${grade}`);
 
-        this.parent.handleAddStudent(name, course, grade);
+        //this.parent.handleAddStudent(name, course, grade);
+        this.callBacks.add(name, course, grade);
     }
     handleCancelClick(){
         console.log('clear button was clicked');
@@ -68,6 +77,17 @@ class SCMS_view{
 
 class SCMS_model{
     constructor(){
-
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
